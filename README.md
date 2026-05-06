@@ -29,7 +29,8 @@ The node status badge in Node-RED is updated on every message, showing the curre
 
 1. In Node-RED, open **Menu → Import** and paste (or upload) `ha_mqtt_problem_sensor.json`.
 2. Wire the output to an **MQTT Out** node pointed at your shared broker.
-3. Edit the constants in the **Node Configuration** section of the function node:
+3. In the **MQTT Out** node properties, set **Retain** to `true`. This ensures Home Assistant re-reads the config and last-known state on restart — without it, entities will show as `unknown` until the next message fires.
+4. Edit the constants in the **Node Configuration** section of the function node:
 
 ```js
 const UUID          = "a3ad6610-529b-403b-be6b-c6ab54a2bc9f"; // Generate a fresh UUID for each new entity
